@@ -1,3 +1,3 @@
-# activitat_1_4
+# Curso-Flutter-Actividad-1.4
 
-A new Flutter project.
+Actividad 1.4 del Curso de Flutter
