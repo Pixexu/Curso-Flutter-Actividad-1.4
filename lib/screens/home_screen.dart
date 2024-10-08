@@ -123,10 +123,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               minLines: 1,
                               textAlign: TextAlign.left,
                               onChanged: (value) {
-                                if (value != "") searchPlaceByPostcode(value);
+                                if (value.length > 2) {
+                                  searchPlaceByPostcode(value);
+                                }
                               },
                               onSubmitted: (value) {
-                                if (value != "") searchPlaceByPostcode(value);
+                                if (value.length > 2) {
+                                  searchPlaceByPostcode(value);
+                                }
                               },
                             ),
                           ),
@@ -191,10 +195,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               minLines: 1,
                               textAlign: TextAlign.left,
                               onChanged: (value) {
-                                if (value != "") searchPlaceByName(value);
+                                if (value.length > 2) {
+                                  searchPlaceByName(value);
+                                }
                               },
                               onSubmitted: (value) {
-                                if (value != "") searchPlaceByName(value);
+                                if (value.length > 2) {
+                                  searchPlaceByName(value);
+                                }
                               },
                             ),
                           ),
@@ -292,12 +300,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
   //==================================================
   void onPressedByPostcode() {
-    searchPlaceByPostcode(_textEditingControllerPostcode.text);
+    if (_textEditingControllerPostcode.text.length > 2) {
+      searchPlaceByPostcode(_textEditingControllerPostcode.text);
+    }
   }
 
   //==================================================
   void onPressedByName() {
-    searchPlaceByName(_textEditingControllerName.text);
+    if (_textEditingControllerName.text.length > 2) {
+      searchPlaceByName(_textEditingControllerName.text);
+    }
   }
 
   //==================================================
