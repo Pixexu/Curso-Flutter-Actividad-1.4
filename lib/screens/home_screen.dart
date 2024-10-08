@@ -1,4 +1,3 @@
-import 'package:activitat_1_4/widgets/place_by_postcode_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,7 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../models/places_by_name.dart';
 import '../models/places_by_postcode.dart';
 import '../services/postcode_service.dart';
-import '../widgets/place_by_name.dart';
+import '../widgets/place_by_name_widget.dart';
+import '../widgets/place_by_postcode_widget.dart';
 
 //==================================================
 class HomeScreen extends StatefulWidget {
@@ -187,9 +187,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                       GoogleFonts.montserrat().fontFamily,
                                 ),
                               ),
-                              // inputFormatters: [
-                              //   FilteringTextInputFormatter.digitsOnly
-                              // ],
                               keyboardType: TextInputType.name,
                               maxLines: 1,
                               minLines: 1,
@@ -233,60 +230,53 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(15),
                   child: Column(
-                    //mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Column(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.list,
-                                color: Colors.amber.shade800,
-                              ),
-                              Text(
-                                "RESULTADOS",
-                                style: TextStyle(
-                                  color: Colors.amber.shade800,
-                                  fontFamily:
-                                      GoogleFonts.montserrat().fontFamily,
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ],
+                          Icon(
+                            Icons.list,
+                            color: Colors.amber.shade800,
                           ),
-                          const SizedBox(height: 5),
-                          if (searching)
-                            Center(
-                              child: CircularProgressIndicator(
-                                color: Colors.amber.shade900,
-                              ),
+                          Text(
+                            "RESULTADOS",
+                            style: TextStyle(
+                              color: Colors.amber.shade800,
+                              fontFamily: GoogleFonts.montserrat().fontFamily,
+                              fontSize: 16,
                             ),
-                          if ((!searching) &&
-                              (placesByPostcode == null) &&
-                              (placesByName == null))
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "NO HAY DATOS",
-                                  style: TextStyle(
-                                    fontFamily:
-                                        GoogleFonts.montserrat().fontFamily,
-                                    fontSize: 16,
-                                  ),
-                                )
-                              ],
-                            ),
-                          if ((!searching) && (placesByPostcode != null))
-                            for (var place in placesByPostcode!.places)
-                              PlaceByPostcodeWidget(place: place),
-                          if ((!searching) && (placesByName != null))
-                            for (var place in placesByName!.places)
-                              PlaceByNameWidget(place: place),
-                          //==================================================
+                          ),
                         ],
                       ),
+                      const SizedBox(height: 5),
+                      if (searching)
+                        Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.amber.shade900,
+                          ),
+                        ),
+                      if ((!searching) &&
+                          (placesByPostcode == null) &&
+                          (placesByName == null))
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "NO HAY DATOS",
+                              style: TextStyle(
+                                fontFamily: GoogleFonts.montserrat().fontFamily,
+                                fontSize: 16,
+                              ),
+                            )
+                          ],
+                        ),
+                      if ((!searching) && (placesByPostcode != null))
+                        for (var place in placesByPostcode!.places)
+                          PlaceByPostcodeWidget(place: place),
+                      if ((!searching) && (placesByName != null))
+                        for (var place in placesByName!.places)
+                          PlaceByNameWidget(place: place),
+                      //==================================================
                     ],
                   ),
                 ),
